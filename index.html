@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+ <style>
+    .delete{
+        height:40px;
+        width:60px;
+    }
+    .edit{
+        height:40px;
+        width:60px;
+    }
+ </style>
+</head>
+  <body>
+    <div class="container">
+    Name:<input type="text"  id="name">
+    email:<input type="text" id="email">
+    phone:<input type="text"  id="phone">
+<input type="button"  id ="btnadd" value="AddToList" ><br>
+<ul class="list"></ul>
+
+
+   
+        
+
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </div>
+</body>
+<script>
+    let div=document.querySelector(".container");
+    let button =document.getElementById("btnadd");
+    let name=document.getElementById("name");
+    let email=document.getElementById("email");
+    let phone=document.getElementById("phone");
+    let list=document.querySelector(".list");
+   
+     // var editbtn=document.querySelector(".edit");
+       
+   
+    button.addEventListener('click',(e)=>{
+        var  listitem=document.createElement("li");
+        let addedvalue=name.value+email.value+phone.value;
+       let listchild= document.createTextNode(addedvalue)
+        listitem.appendChild(listchild);
+        list.appendChild(listitem);
+
+        var  deletebtn=document.createElement('input');
+         deletebtn.setAttribute('type','button');
+        deletebtn.setAttribute('class','delete');
+        deletebtn.setAttribute('value','delete');
+        console.log(deletebtn);
+        
+        listitem.append(deletebtn);
+       
+       
+
+        var edit=document.createElement('input');
+        edit.setAttribute('type','button');
+        edit.setAttribute('class','edit');
+        edit.setAttribute('value','edit');
+        listitem.append(edit);
+        
+        const obj={name:name.value,
+        id:email.value,
+      phone:phone.value};
+ if(localStorage.clickcount){
+                localStorage.clickcount=Number(localStorage.clickcount)+1;
+  } else {
+    localStorage.clickcount = 0;
+  }
+  count=localStorage.clickcount;
+
+  localStorage.setItem(count,JSON.stringify(obj));
+ 
+
+
+      
+      var  newdel=document.querySelector(".delete");
+  newdel.addEventListener('click',deletebutton);
+function deletebutton(e1){
+  if(e1.target.classList.contains('delete')){
+   var l= e1.target.parentElement;
+   console.log(l);
+  }
+}
+      
+  });
+  
+
+
+
+   
+
+    
+    
+      
+     
+
+ 
+    
+     
+   
+  
+
+
+</script>
+
+
+</html>
